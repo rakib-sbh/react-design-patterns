@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-const Counter = ({ render }) => {
+const Counter = ({ children }) => {
   const [count, setCount] = useState(0);
+
   const handleCount = () => {
     setCount((prevCount) => prevCount + 1);
   };
 
-  return render({ count, handleCount });
+  return children({ count, handleCount });
 };
 
 export default Counter;

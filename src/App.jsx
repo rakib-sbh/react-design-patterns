@@ -1,34 +1,25 @@
+import { useState } from "react";
 import ClickCounter from "./components/ClickCounter";
-import HoverCounter from "./components/HoverCounter";
 import Counter from "./components/Counter";
-import CounterWithChildren from "./components/CounterWithChildren";
+import Section from "./components/Section";
+
+// import ThemeContext from "./contexts/CustomThemeContext";
+import ThemeContext from "./contexts/ThemeContext";
 
 const App = () => {
+  const [theme, setTheme] = useState("dark");
   return (
     <>
       <h1>Click and Hover Application</h1>
 
-      <Counter
-        render={({ count, handleCount }) => (
-          <ClickCounter count={count} handleCount={handleCount} />
-        )}
-      />
-      <Counter
-        render={({ count, handleCount }) => (
-          <HoverCounter count={count} handleCount={handleCount} />
-        )}
-      />
-      <CounterWithChildren>
+      <Counter>
         {({ count, handleCount }) => (
           <ClickCounter count={count} handleCount={handleCount} />
         )}
-      </CounterWithChildren>
-
-      <CounterWithChildren>
-        {({ count, handleCount }) => (
-          <HoverCounter count={count} handleCount={handleCount} />
-        )}
-      </CounterWithChildren>
+      </Counter>
+      <ThemeContext.Provider value={{ theme: theme }}>
+        <Section />
+      </ThemeContext.Provider>
     </>
   );
 };
