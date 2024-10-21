@@ -8,6 +8,10 @@ import ThemeContext from "./contexts/ThemeContext";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
+
+  const switchTheme = () => {
+    setTheme((prevState) => (prevState === "dark" ? "light" : "dark"));
+  };
   return (
     <>
       <h1>Click and Hover Application</h1>
@@ -17,7 +21,7 @@ const App = () => {
           <ClickCounter count={count} handleCount={handleCount} />
         )}
       </Counter>
-      <ThemeContext.Provider value={{ theme: theme }}>
+      <ThemeContext.Provider value={{ theme, switchTheme }}>
         <Section />
       </ThemeContext.Provider>
     </>
